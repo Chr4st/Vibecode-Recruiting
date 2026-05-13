@@ -69,6 +69,16 @@ The meta-game: how scoring actually works, company-specific strategies, referral
 - **Unconventional**: Open source (38% more likely to land interviews), GitHub optimization, hackathons, tech blogging
 - **Anti-Patterns**: Top mistakes in coding, system design, behavioral, and resume
 
+### [System Design Playbook](system-design-playbook.md) -- 8,000+ lines
+The complete system design interview book. 16 chapters across 5 parts, covering estimation through real-world case studies.
+
+- **Part I -- The Interview**: 2026 rubric shifts, scoring weights, RESHADED framework, company expectations (Google/Meta/Amazon/Stripe/Netflix/Anthropic), level expectations L3-L7+, back-of-envelope estimation with worked examples
+- **Part II -- Building Blocks**: Networking (DNS, CDN, load balancers, protocols), data storage (SQL/NoSQL/NewSQL, sharding, replication, LSM trees vs B-trees), caching (5 patterns, eviction, stampede), message queues (Kafka/RabbitMQ/SQS), distributed systems (CAP/PACELC, Raft, Saga, CQRS, CRDTs), API design, observability
+- **Part III -- Design Problems**: 14 problems across 3 tiers (URL Shortener, Rate Limiter, Chat System, News Feed, Notification System, Web Crawler, Key-Value Store, Unique ID Generator, Search Autocomplete, Video Streaming, File Storage, Payment System, Ride-Sharing, Distributed Cache) -- each with requirements, estimation, HLD diagram, API, data model, deep dive, trade-offs
+- **Part IV -- AI/ML System Design**: LLM Gateway, RAG Pipeline, Vector Search, Feature Store, Training Pipeline, Agent Orchestration
+- **Part V -- Advanced Topics**: Data pipelines (Lambda/Kappa, CDC), microservices patterns (service mesh, strangler fig), real-world case studies (Netflix, Discord, Uber, Slack, Stripe)
+- **Appendix**: Powers of two, latency numbers, availability nines, cloud pricing, 8-week study plan
+
 ---
 
 ## Quick Reference
