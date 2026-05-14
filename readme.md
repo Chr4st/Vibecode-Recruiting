@@ -137,7 +137,7 @@ Final 2 wks: Timed practice + system design out loud + behavioral rehearsal
 
 ## Contributing
 
-Found outdated info? Interview format changed? Open a PR. This space moves fast.
+Found outdated info? Interview format changed? Open a PR.
 
 ---
 
