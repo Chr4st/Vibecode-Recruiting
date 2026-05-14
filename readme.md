@@ -14,17 +14,18 @@ The SWE recruiting landscape changed more between 2024-2026 than in the previous
 
 ## The Knowledge Base
 
-### [Interview Landscape](interview-landscape.md) -- 632 lines
-The state of SWE interviews in 2025-2026. What changed, what's coming, and how each major company runs their process.
+### [Interview Landscape](interview-landscape.md) -- 1,700+ lines
+How SWE interviews actually work under the hood — mechanics, scoring systems, hiring committees, and the forces reshaping the process. Not just what's changing, but WHY.
 
-- **Vibe Coding**: Definition, debate, and how it's reshaping interview formats
-- **AI-Assisted Interviews**: Meta's new format (CoderPad + Llama 4/GPT-5), Canva, Shopify, Coinbase -- who allows AI, who bans it
-- **The Cheating Arms Race**: 38.5% flagged (Fabric, 19K interviews), Cluely GPU overlays, Truely counter-tool, in-person return
-- **Company Pipelines**: Detailed interview formats for Meta, Google, Amazon, Apple, Microsoft, Netflix, Stripe, Anthropic, OpenAI, Databricks, Scale AI
-- **Zero2Sudo**: Resources, Notion templates, guides
-- **Rotational Programs**: Meta RPM, RAISE, Google STEP/BOLD
-- **Assessment Platforms**: HackerRank, CodeSignal (agentic assessments), CoderPad, Codility, Karat
-- **AI Hiring Bias**: Mobley v. Workday, ACLU v. HireVue, California/Colorado regulations
+- **Format Evolution 2022-2026**: Year-by-year timeline from peak traditional to the three-paradigm split (AI-Required / AI-Banned / AI-Neutral) with data tables
+- **How Interviews Work Under the Hood**: Universal 1-4 scoring system, what interviewers actually write, hiring committee mechanics at Google (blind HC) / Meta (bootcamp) / Amazon (Bar Raiser veto), the approval funnel (100K applications → 45 hires)
+- **Vibe Coding**: Karpathy's coinage, 6,700% search spike, the pro/anti debate, interview design fracture
+- **AI-Assisted Interviews**: Meta's 3-phase format blow-by-blow (bug fix → feature → optimization), CoderPad + GPT-5/Claude/Gemini/Llama 4, 5-tier company policy landscape, scoring framework comparison
+- **The Cheating Arms Race**: 38.5% flagged (Fabric, 19K interviews), Cluely GPU-level hooks (DirectX/Metal architecture diagram), 20+ detection signals, false positive concerns, economic analysis, in-person return 24% → 38%
+- **GenAI System Design**: New interview category — RAG pipelines, agent orchestration, LLM gateways, cost-as-first-class-constraint, 6 common problem types
+- **The Quality Bar**: Score bar up 12%, HC approval 10-15%, the 3-to-4 gap, entry-level squeeze (7% new grad hires at FAANG, down from 31%)
+- **Assessment Platforms**: CodeSignal agentic assessments, HackerRank 93% detection, Karat NextGen, platform comparison with proctoring breakdown
+- **Company Pipelines**: Detailed formats for Meta, Google, Amazon, Apple, Microsoft, Netflix, Stripe, Anthropic, OpenAI, Databricks, Scale AI + rotational programs
 
 ### [Prep Playbook](prep-playbook.md) -- 5,900+ lines
 The comprehensive preparation guide: 15 DSA patterns with pseudocode templates, behavioral deep dives, resume strategy, networking playbook, study plans, and the mental game.
@@ -41,20 +42,17 @@ The comprehensive preparation guide: 15 DSA patterns with pseudocode templates, 
 - **Study Plans**: Detailed 4/8/12-week plans with week-by-week tables, 3 daily routine templates, new grad vs experienced allocation
 - **Resources Ranked**: Books, courses, platforms, communities, YouTube channels ranked by ROI with free vs paid analysis
 
-### [Market Data](market-data.md) -- 362 lines
-Hard numbers on the 2025-2026 SWE job market. Compensation, layoffs, hiring trends, and what's actually happening.
+### [Market Data](market-data.md) -- 1,470+ lines
+Deep analysis of the 2025-2026 SWE job market — not just the numbers, but the root causes, mechanisms, and what's actually driving the changes.
 
-- **Macro Trends**: SWE postings down 49% from pre-pandemic; junior roles down 60%; AI roles up 300%
-- **Layoffs**: 127K (2025), 128K+ (2026 YTD); 20.4% explicitly AI-linked; Microsoft/Amazon/Meta specifics
-- **Company Headcount**: Google 190K, Meta 79K, Amazon 1.58M, Apple 166K -- engineer counts and growth rates
-- **Compensation**: Levels.fyi 2025 data (Entry $155K, Senior $312K, Staff $457K); AI premium (+6-18% by level); FAANG ranges
-- **New Grad Comp**: $180K-$280K TC range; top payers (Meta, Airbnb, Google)
-- **AI Startup Comp**: Anthropic PMs at $460K base; staff engineers at OpenAI/Anthropic $500K-$900K TC
-- **Recruiting Cycles**: Amazon opens July, Microsoft August, Meta September, Google October (2-4 week window)
-- **AI Impact**: Junior dev hiring crisis (-20% employment age 22-25), Copilot at 90% of Fortune 100, prompt engineering +250%
-- **RTO**: 54% of Fortune 100 mandate 5-day office; Amazon/Meta enforcing; Google hybrid
-- **H-1B**: $100K supplemental fee, weighted lottery, FAANG hiring 32K+ in India
-- **Negotiation**: 10-20% higher pay for negotiators; $40M total gains on Levels.fyi in 2025
+- **Market Timeline 2024-2026**: Chronological events with causality chains — The Correction Year, The Fracture, The New Normal
+- **Tech Layoffs: The Full Picture**: 950K+ global since 2022, 4 root cause drivers with data (pandemic overhiring, AI automation at 47.9%, VC constraints, efficiency culture), company-by-company breakdowns, the "layoffs + record revenue" paradox explained
+- **The Entry-Level Crisis**: Postings down 67%, new grads = 7% of FAANG hires (was 31%), 5 root causes analyzed (AI handling junior tasks, training ROI collapse, experience paradox, survivor effect), CS enrollment -8.1%, bootcamp market collapse
+- **AI Productivity: Hype vs Reality**: METR study (devs 19% SLOWER with AI, self-reported 20% faster — 39% perception gap), Copilot metrics (46% generated, 30% accepted), the 93%-adoption / 10%-gain paradox, historical technology adoption parallels
+- **Compensation Deep Dive**: AI premium (+56% PwC), geographic data, equity deep dive, FAANG ranges by level
+- **RTO: What's Actually Happening**: Company-by-company (Amazon 1.4/5 satisfaction, Oracle hired 600+), stealth layoff dynamic, productivity data
+- **H-1B & Global Labor Shift**: $100K supplemental fee, salary lottery, India +18%, Amazon $35B / Microsoft $17.5B investment
+- **CS Enrollment Decline**: UC first decline since dot-com, where students are going, long-term shortage implications
 
 ### [Advanced Strategies](advanced-strategies.md) -- 6,100+ lines
 The hidden curriculum: scoring mechanics, communication mastery, company-specific deep strategies, negotiation playbook, career ladder, and everything beyond knowing the material.
