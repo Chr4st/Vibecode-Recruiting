@@ -1,6 +1,6 @@
 # Vibecode Recruiting: The Complete SWE Interview & Job Market Guide (2025-2026)
 
-> An opinionated, data-driven playbook for technical candidates navigating the AI-transformed software engineering job market. Covers vibe coding interviews, company-specific pipelines, DSA/system design prep, market data, compensation benchmarks, and advanced strategies for gaming the process.
+> An opinionated, data-driven playbook for technical candidates navigating the AI-transformed software engineering job market. Covers vibe coding interviews, company-specific pipelines, DSA/system design prep, market data, compensation benchmarks, and advanced strategies for gaming the process. 
 
 ---
 
@@ -8,7 +8,7 @@
 
 The SWE recruiting landscape changed more between 2024-2026 than in the previous decade. AI tools in interviews, 38.5% cheating rates, Meta's AI-assisted coding round, 49% fewer job postings, and $500K+ comp at AI startups -- this repo captures all of it.
 
-**Built for self-prep. No fluff. Every claim sourced.**
+**Built for self-prep. No BS. This is how I got 5 offers as freshman.**
 
 ---
 
