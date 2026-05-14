@@ -26,17 +26,20 @@ The state of SWE interviews in 2025-2026. What changed, what's coming, and how e
 - **Assessment Platforms**: HackerRank, CodeSignal (agentic assessments), CoderPad, Codility, Karat
 - **AI Hiring Bias**: Mobley v. Workday, ACLU v. HireVue, California/Colorado regulations
 
-### [Prep Playbook](prep-playbook.md) -- 571 lines
-The complete preparation guide: what to study, in what order, with what tools.
+### [Prep Playbook](prep-playbook.md) -- 5,900+ lines
+The comprehensive preparation guide: 15 DSA patterns with pseudocode templates, behavioral deep dives, resume strategy, networking playbook, study plans, and the mental game.
 
-- **DSA Patterns**: 15 essential patterns ranked by frequency (top 5 cover 90% of questions)
-- **Problem Lists**: Blind 75 vs NeetCode 150 vs Grind 75 -- head-to-head comparison with verdict
-- **System Design**: Tier 1/2/3 most-asked questions, junior vs senior expectations, 9 foundational concepts, DDIA vs Alex Xu
-- **Behavioral Prep**: STAR method, company-specific frameworks (Amazon LPs, Meta Jedi, Google Googliness), story banking methodology
-- **AI Tools**: Claude vs ChatGPT for mock interviews, platform comparisons (Pramp, Interviewing.io, Hello Interview)
-- **Resume Strategy**: ATS optimization, AI resume screeners, referral vs cold apply (1 referral = 40 cold apps)
-- **12-Week Timeline**: Foundation -> Pattern Mastery -> Targeting Sprint -> Final Polish
-- **Resources**: Free tier (NeetCode, System Design Primer, Tech Interview Handbook) + paid stacks ranked by budget
+- **Problem-Solving Methodology**: 7-minute framework, pattern recognition flowchart, 3 full worked examples with interview narration
+- **15 DSA Patterns**: Each with: what/when/technique/pseudocode template/complexity/variations/5 practice problems/common mistakes table. Covers two pointers, sliding window, binary search, hash map, stack, BFS/DFS, backtracking, DP (5 categories), greedy, trees, graphs, trie, heap, intervals, bit manipulation
+- **Master Problem List**: Curated 75-problem set organized by pattern with 6-week solving order
+- **Behavioral Deep Dive**: STAR method with 3 full worked answers, 12 story archetypes with templates, Amazon 16 LPs (6 critical for SDE with trap questions), Meta Jedi values, Google Googleyness, 8 difficult questions with response frameworks
+- **Resume & Application**: ATS optimization with before/after rewrites, XYZ bullet formula with 15 examples, GitHub/LinkedIn optimization checklists
+- **Networking & Referrals**: 5 cold outreach templates, informational interview scripts, pipeline management spreadsheet, recruiter scripts
+- **Mock Interviews**: 7-dimension coding rubric, 5-dimension behavioral rubric, SBI feedback model, platform comparison
+- **The Mental Game**: Rejection handling, burnout prevention (2-day rule), performance anxiety protocol, confidence building
+- **AI Tools for Prep**: 10 copy-paste Claude prompt templates for mock interviews, code review, STAR refinement
+- **Study Plans**: Detailed 4/8/12-week plans with week-by-week tables, 3 daily routine templates, new grad vs experienced allocation
+- **Resources Ranked**: Books, courses, platforms, communities, YouTube channels ranked by ROI with free vs paid analysis
 
 ### [Market Data](market-data.md) -- 362 lines
 Hard numbers on the 2025-2026 SWE job market. Compensation, layoffs, hiring trends, and what's actually happening.
@@ -53,21 +56,21 @@ Hard numbers on the 2025-2026 SWE job market. Compensation, layoffs, hiring tren
 - **H-1B**: $100K supplemental fee, weighted lottery, FAANG hiring 32K+ in India
 - **Negotiation**: 10-20% higher pay for negotiators; $40M total gains on Levels.fyi in 2025
 
-### [Advanced Strategies](advanced-strategies.md) -- 548 lines
-The meta-game: how scoring actually works, company-specific strategies, referral game, negotiation scripts, and timeline management.
+### [Advanced Strategies](advanced-strategies.md) -- 6,100+ lines
+The hidden curriculum: scoring mechanics, communication mastery, company-specific deep strategies, negotiation playbook, career ladder, and everything beyond knowing the material.
 
-- **Scoring Rubrics**: How interviewers rate 1-4; why all "Lean Hire" = rejection at Google; what "Strong Hire" looks like
-- **Communication Protocol**: The "Thinking Out Loud" method, time management (45-min breakdown), clarifying questions that signal maturity
-- **Recovery Strategies**: What to do when stuck, the "magic function" technique, partial credit
-- **System Design 2026**: RESHADED framework, cost reasoning, AI system design topics
-- **Google Strategy**: Four signals (40% technical, 30% Googleyness, 20% leadership, 10% role), HC mechanics, 3.5+ threshold
-- **Meta Strategy**: AI-assisted round tactics (steer > follow), Jedi behavioral weight, downlevel risk
-- **Amazon Strategy**: Bar Raiser system, 6 critical LPs, "What specifically did YOU do?" drill
-- **Referral Game**: 7% of apps but 40% of hires; bonus structures ($4K-$20K at Google); cold networking framework
-- **Negotiation Scripts**: Exact wording for counters, competing offers, "final offer" responses, level pushback
-- **Timeline Management**: Optimal sequencing, stalling tactics, team-match-as-weapon defense
-- **Unconventional**: Open source (38% more likely to land interviews), GitHub optimization, hackathons, tech blogging
-- **Anti-Patterns**: Top mistakes in coding, system design, behavioral, and resume
+- **How Scoring Works**: 1-4 rubric with side-by-side "3" vs "4" transcripts, 6 signal dimensions with weights, HC mechanics at Google/Meta/Amazon, "Strong Hire" playbook, "correct but silent" failure analysis
+- **Communication Mastery**: NARRATE protocol (7-phase thinking-out-loud framework), handling silence, 3-tier hint system, conversation steering, scripted first 5 and last 3 minutes, 8 recovery strategies
+- **Interview Day Execution**: Virtual setup checklist, on-site logistics, dress code by company, energy management for full-day loops, 7 curveball scenarios with scripts
+- **Company Deep Strategies (8 companies)**: Google (4 signals, HC, host matching), Meta (AI-assisted round, Jedi, bootcamp), Amazon (16 LPs, Bar Raiser, "what did YOU do" drill), Apple (craft focus, presentation round), Microsoft (AA interviewer, growth mindset), Stripe (bug bash, integration round), Netflix (keeper test, all-cash comp), Anthropic (research discussion, safety awareness) + startup framework
+- **Referral & Networking**: 5 cold outreach templates with response rates, warm intro scripts, recruiter relationship management, internal advocacy, 90-day networking plan
+- **Negotiation Playbook**: 4 laws, TC breakdown with vesting schedules, multi-offer management, level negotiation, equity deep dive (15 startup questions), sign-on optimization, 15 copy-paste negotiation scripts, day-by-day timeline
+- **Timing & Sequencing**: Monthly hiring calendar, application sequencing model, offer syncing scripts, 8 stalling tactics, weighted decision framework with worked example
+- **The Invisible Resume**: Open source (38% interview lift), technical blogging, conference speaking ladder, side project signals, GitHub optimization, 6-month compound plan
+- **Salary Benchmarking**: Data source reliability, TC calculator, comp tables for 8 companies × 4 levels, golden handcuffs calculation
+- **Edge Cases**: Career gaps, layoff recovery, visa complications, age bias, career switching, re-interviewing after rejection, remote work strategy
+- **Post-Offer**: Team selection (15 questions + red flags), 30/60/90 onboarding plan, first performance review positioning, internal mobility
+- **Career Ladder**: Cross-company level mapping, L5→L6 wall analysis, 4 Staff engineer archetypes, promotion mechanics, stay vs leave framework
 
 ### [System Design Playbook](system-design-playbook.md) -- 8,000+ lines
 The complete system design interview book. 16 chapters across 5 parts, covering estimation through real-world case studies.
