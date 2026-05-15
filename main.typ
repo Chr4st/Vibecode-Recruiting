@@ -133,13 +133,11 @@
 
 *Programming Languages:* Go · C++ · Java · PHP · Python · JavaScript · TypeScript · MATLAB
 
-*Infrastructure and Tools:* Docker · Git · Kubernetes · Slurm · NGINX · GitHub Actions · #LaTeX · Typst
+*Infrastructure and Tools:* Docker · Git · GitHub Actions · Kubernetes · NGINX · Slurm · #LaTeX · Typst
 
-*Web Frameworks:* Next.js · React · React Native · Django · Flask · Remix
+*Web Frameworks:* Django · Flask · Next.js · React · Remix · React Native
 
-*ML and Data:* PyTorch · TensorFlow · scikit-learn · NumPy · Pandas · SymPy · Apache Arrow
-
-*Databases and Services:* PostgreSQL · MySQL · MongoDB · Redis · gRPC
+*Other Technologies:* Apache Arrow · gRPC · MongoDB · MySQL · NumPy · Pandas · PostgreSQL · PyTorch · Redis · scikit-learn · SymPy · TensorFlow
 
 
 = Honors & Awards
