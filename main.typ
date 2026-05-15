@@ -89,6 +89,7 @@
 
 #entry[
   == ML Integral Solver
+  _Python · PyTorch · SymPy · NumPy_
 ][
   Sep 2025 -- Present
 ][
@@ -99,6 +100,7 @@
 
 #entry[
   == Nightfall Minecraft Server
+  _PHP · MySQL · Redis · NGINX_
 ][
   Jun 2022 -- Jun 2025
 ][
@@ -129,13 +131,15 @@
   box(L + h(-a.width * 0.67) + A + h(-a.width * 0.25) + TeX)
 }
 
-*Programming Languages:* PHP · C++ · Java · JavaScript · Python · MATLAB · TypeScript
+*Programming Languages:* Go · C++ · Java · PHP · Python · JavaScript · TypeScript · MATLAB
 
-*Infrastructure and Tools:* Ansible · Docker · Git/GitHub Actions · Kubernetes · Nix/NixOS · Slurm · #LaTeX · Typst
+*Infrastructure and Tools:* Docker · Git · Kubernetes · Slurm · NGINX · GitHub Actions · #LaTeX · Typst
 
-*Web Frameworks:* Django · Flask · Starlette · Phoenix · Next.js · React · Remix · React Native
+*Web Frameworks:* Next.js · React · React Native · Django · Flask · Remix
 
-*Other Technologies:* gRPC · MongoDB · NumPy · Pandas · PostgreSQL · PyTorch · Redis · scikit-learn · TensorFlow
+*ML and Data:* PyTorch · TensorFlow · scikit-learn · NumPy · Pandas · SymPy · Apache Arrow
+
+*Databases and Services:* PostgreSQL · MySQL · MongoDB · Redis · gRPC
 
 
 = Honors & Awards
