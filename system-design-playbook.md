@@ -93,11 +93,13 @@ If the question is "Design a customer support system," 2023 expected a ticket qu
 
 "Hand-waving about adding more servers" was acceptable in 2023. In 2026, it loses points. Senior loops want you to reason about cost per request. Right-sizing infrastructure for actual scale matters.
 
-At L6 level and above, candidates should reason about cost naturally: *"This architecture costs roughly $50K/month in cloud resources. If we need to reduce that, the biggest lever is moving from real-time processing to batch for the analytics pipeline."*
+At L6 level and above, candidates should derive costs explicitly: *"At 50K QPS with 200ms p99, we need 10K concurrent requests. On c6g.xlarge instances handling 500 req/s each, that is 20 instances at $0.136/hr = $20 x 0.136 x 730 = ~$2,000/month for compute alone. Adding managed Kafka, RDS, and CDN brings the total to ~$50K/month. The biggest cost lever is moving from real-time processing to batch for the analytics pipeline, which would eliminate the Kafka tier entirely."*
 
 ### Shift 3: Operational Maturity Is Mandatory
 
 Observability, deployment strategy, on-call burden, and rollback paths are no longer optional bonus topics. Candidates who skip these discussions lose measurable points. Monitoring, alerting, deployment strategy, and rollback plans are scored -- not just "nice to mention."
+
+**How to weave operations into every component (not bolt it on at the end):** As you present each component, state its operational surface. Example: "This Redis cache will emit eviction rate metrics, alerting if miss rate exceeds 5%. We will canary new cache policies to 10% of traffic before full rollout. Rollback: revert to previous cache config via feature flag." Example: "This Kafka consumer group will expose consumer lag as a metric. If lag exceeds 10K messages, auto-scale consumers. If a poison message blocks a partition, dead-letter it after 3 retries." Candidates who save operations for a 2-minute wrap-up at the end signal that they have never operated a production system. Interviewers notice.
 
 ### Summary of Changes
 
@@ -468,7 +470,7 @@ The same design question will be evaluated differently depending on your target 
 | Failure modes | "If this node goes down, here is what happens and how we recover" | No mention of what can go wrong |
 | Operations | "We would canary deploy to 1%, monitor error rates, then ramp" | No discussion of deployment, monitoring, or rollback |
 | Communication | Structured, collaborative, thinks out loud | Goes silent for 5+ minutes; ignores interviewer cues |
-| Cost | "This costs approximately $X/month; we could cut it by doing Y" | "Just add more servers" |
+| Cost | "At Z QPS x p99 latency, we need N instances x $0.10/hr x 730 hrs = $X/month. The biggest cost lever is Y." | "Just add more servers" |
 
 ---
 
@@ -601,7 +603,7 @@ These numbers, originally compiled by Jeff Dean and Peter Norvig in 2012 and upd
 
 6. **Compression is almost free.** LZ4/Snappy at 500 MiB/s means compressing before sending over the network almost always wins. The compression time is negligible compared to the bandwidth savings.
 
-> **How to use these numbers in interviews:** "We need to store user sessions with sub-millisecond lookup. A Redis cache gives us ~100 us reads, which is well within our SLO. If we went to PostgreSQL, that would be ~500 us for a simple key lookup, still acceptable but 5x slower. Going to S3 at 50-80 ms would blow our latency budget."
+> **How to use these numbers in interviews:** "We need to store user sessions with sub-millisecond lookup. A Redis cache gives us ~100 us reads, which is well within our SLO. If we went to PostgreSQL, that would be ~500 us for a simple key lookup, still within our SLO but 5x slower with less headroom. Going to S3 at 50-80 ms would blow our latency budget."
 
 ---
 
@@ -744,7 +746,7 @@ CONCLUSION: Very read-heavy (75:1 ratio). The feed is the hot path.
             could handle uploads. CDN is critical for serving images.
 ```
 
-> **Interview tip:** When doing QPS estimation in the interview, start with the formula, state your assumptions out loud, round aggressively ("about 250 million DAU, call it 250M"), and get to the final number quickly. Spend 60-90 seconds, not 5 minutes. The goal is to establish whether you need 100 QPS or 100K QPS, because that changes your entire architecture.
+> **Interview tip:** When doing QPS estimation in the interview, start with the formula, state your assumptions out loud, round for speed ("about 250 million DAU, call it 250M"), and get to the final number quickly. Spend 60-90 seconds, not 5 minutes. The goal is to establish whether you need 100 QPS or 100K QPS, because that changes your entire architecture. **However:** round for speed in the estimation phase, but refine when the number drives a design decision. If write QPS could be 2K or 50K, that is the difference between a single Postgres instance and a sharded Kafka pipeline. The interviewer is testing whether you recognize when precision matters.
 
 ---
 
@@ -954,7 +956,7 @@ Combined = 1 - (1 - 0.999) x (1 - 0.999) = 1 - 0.000001 = 99.9999%
 
 **Interview rule of thumb:** Every component you add in series costs you approximately one nine. A chain of 3 services at 99.9% each gives you ~99.7%. This is why redundancy matters -- adding a parallel replica is how you buy back the nines that your serial chain costs you.
 
-> **Pro tip:** When the interviewer asks "what availability would you target?", answer based on the use case: "For a social media feed, 99.9% is appropriate -- 8 hours of downtime per year is acceptable. For a payment processing system, we need 99.99% -- less than an hour of downtime per year. For a medical device, we would need 99.999%+." Then explain how your architecture achieves that target.
+> **Pro tip:** When the interviewer asks "what availability would you target?", answer based on the use case: "For a social media feed, 99.9% -- 8 hours of downtime per year -- is the right target because the business impact of feed unavailability is revenue loss from ads, not safety-critical failure. For a payment processing system, we need 99.99% -- less than 53 minutes of downtime per year -- because every minute of downtime is measurable financial loss and regulatory exposure. For a medical device, 99.999%+ because downtime can cause patient harm." Then explain how your architecture achieves that target.
 
 ---
 
@@ -1158,7 +1160,7 @@ SERVERS:
 ## 2.9 Interview Tips for Estimation
 
 **Do:**
-- Use rounding and approximation aggressively: 99,987 / 9.1 becomes 100,000 / 10
+- Use rounding for speed during estimation: 99,987 / 9.1 becomes 100,000 / 10. But refine when the rounded number sits on a design boundary (e.g., single-node vs. distributed)
 - Write down your assumptions so both you and the interviewer can reference them
 - Always label your units (KB, MB, GB, QPS, Mbps)
 - State the order of magnitude and move on: "about 10K QPS" is perfect
@@ -1919,7 +1921,7 @@ with the horizontal scalability of NoSQL.
 **When NOT NewSQL:**
 - Simple key-value workloads (overkill, use Redis or DynamoDB).
 - Cost-sensitive (NewSQL is expensive to operate).
-- Single-region, moderate scale (just use PostgreSQL).
+- Single-region, moderate scale -- PostgreSQL handles ACID workloads under 10TB with well-understood query patterns. At larger scale or with different access patterns (e.g., wide-column, time-series), evaluate alternatives. The word "just" in a system design answer signals to the interviewer that you have not thought deeply.
 
 ---
 
@@ -2988,7 +2990,7 @@ as performing it once.
 
 - When a downstream system is overwhelmed, signal upstream to slow down.
 - **Strategies:**
-  1. **Drop:** Discard excess messages (acceptable for metrics, logs).
+  1. **Drop:** Discard excess messages. This is a valid strategy for metrics and logs where statistical sampling preserves aggregate accuracy, but state explicitly what you lose: dropped logs mean gaps in debugging, dropped metrics mean inaccurate dashboards during the exact moments you need them most (outages). Use reservoir sampling or priority-based dropping, not random discard.
   2. **Buffer with bounds:** Queue with a max size; reject when full.
   3. **Rate limit producers:** Return 429 or apply token bucket to incoming rate.
   4. **Scale consumers:** Auto-scale consumer fleet based on queue depth.
@@ -3387,7 +3389,7 @@ base64-encoded (NOT encrypted) --- don't store sensitive data. Token size grows 
 ```
 
 - Assign roles to users, permissions to roles.
-- Simple, most common, sufficient for 90% of applications.
+- RBAC is the simplest model and works well for role-based access. However, interviewers expect you to identify when RBAC falls short -- multi-tenant isolation, attribute-based policies, time-scoped access. Defaulting to "RBAC is sufficient" signals L3-L4 thinking. L5+ candidates discuss ABAC trade-offs unprompted.
 
 #### ABAC (Attribute-Based Access Control)
 
@@ -3405,9 +3407,13 @@ base64-encoded (NOT encrypted) --- don't store sensitive data. Token size grows 
 
 > **What to say in the interview:**
 > "For authentication, I would use JWTs with short expiry (15 min) and refresh
-> tokens (7 days) stored in HTTP-only cookies. For authorization, RBAC is
-> sufficient for most systems. If we need fine-grained access control,
-> I would move to ABAC with a policy engine like OPA (Open Policy Agent)."
+> tokens (7 days) stored in HTTP-only cookies. For authorization, I would start
+> with RBAC for its simplicity, but proactively flag where it breaks down:
+> multi-tenant data isolation requires tenant-scoped policies, time-based access
+> (e.g., contractor access that expires) needs ABAC, and cross-resource permissions
+> (e.g., 'can edit only documents they created') require relationship-based checks.
+> For those cases, I would layer in a policy engine like OPA (Open Policy Agent)
+> evaluating ABAC rules alongside the RBAC base."
 
 ---
 
@@ -3728,10 +3734,13 @@ exact numbers, but reasonable order-of-magnitude estimates.
 ```
 
 > **What to say in the interview:**
-> "Let me do a quick back-of-envelope cost estimate. At X QPS with Y compute
-> per request, we need roughly Z servers. The dominant cost is likely going to
-> be [bandwidth / compute / storage / database] because [reason]. We can
-> reduce this by [caching / CDN / reserved instances / right-sizing]."
+> "Let me derive the cost. Peak QPS x p99 latency = max concurrent requests.
+> Max concurrent / requests per instance = minimum instances. At X peak QPS
+> with Y ms p99, that is Z concurrent requests, requiring N instances of
+> [instance type] at $W/hr. N x $W x 730 hours = $M/month. The dominant cost
+> driver is [bandwidth / compute / storage / database] because [reason]. We
+> can reduce this by [caching / CDN / reserved instances / right-sizing].
+> Cost estimates should be within +/-20%, not order-of-magnitude guesses."
 
 **Reserved Instances vs On-Demand vs Spot:**
 
@@ -3832,7 +3841,7 @@ Design a service that takes a long URL and returns a short, unique alias (e.g., 
 - Redirect short URL to the original long URL
 - Users can optionally specify a custom alias
 - Links expire after a configurable TTL (default: 5 years)
-- Analytics: track click count, referrer, geo (stretch goal)
+- Analytics: track click count, referrer, geographic distribution, and temporal patterns. **This is a core requirement, not a stretch goal.** Every production URL shortener tracks clicks, geographic distribution, and referrer data. Interviewers expect this in your high-level design. Missing it signals incomplete requirements gathering -- you are designing a toy, not a system.
 
 #### Non-Functional Requirements
 
@@ -3925,7 +3934,7 @@ DELETE /api/v1/urls/{shortKey}
 - Offline service pre-generates millions of unique 7-char base62 keys
 - Two tables: `unused_keys` and `used_keys`
 - API server requests a batch (e.g., 1,000 keys) and keeps them in memory
-- On crash, those keys are lost — acceptable given 3.5 trillion total capacity
+- On crash, those keys are lost. Key loss on crash is a known failure mode that requires mitigation: batch size tuning (smaller batches = fewer lost keys), audit logging of assigned key ranges for post-crash recovery, and monitoring on key generation rate vs consumption rate. Saying "acceptable because the keyspace is large" is L3 thinking -- L5+ candidates discuss the recovery strategy
 - KGS uses a distributed lock (Redis SETNX) to prevent double-assignment
 - Pro: zero collision, O(1) key generation, no hash computation
 
@@ -4257,7 +4266,7 @@ Design a real-time messaging platform supporting 1:1 and group conversations wit
 - **Durability**: Zero message loss, even during crashes/partitions
 - **Availability**: 99.99% uptime
 - **Scale**: 500M DAU, 60B messages/day
-- **E2E encryption**: Messages unreadable by server (stretch goal)
+- **E2E encryption**: Messages unreadable by server. Mention this in requirements gathering even if you do not design it fully -- it fundamentally changes key management, prevents server-side search, and eliminates server-side content moderation. The interviewer will note whether you identified this architectural constraint
 
 #### Back-of-Envelope Estimation
 
@@ -4456,7 +4465,7 @@ POST /api/v1/groups  { "name": "...", "members": [...] }
 
 1. **Subscription fan-out only to conversation partners.** A user's online status is only relevant to people they are actively chatting with, not all contacts. Maintain a presence subscription list per user (active conversation partners only). When status changes, notify only subscribers -- typically 5-20 users, not thousands.
 
-2. **Gossip-based propagation.** Chat Servers propagate presence updates to each other using a gossip protocol (SWIM or similar). Each server knows the presence of its locally connected users and shares deltas with peers. Eventual consistency is acceptable -- a 5-10 second delay in presence updates is invisible to users.
+2. **Gossip-based propagation.** Chat Servers propagate presence updates to each other using a gossip protocol (SWIM or similar). Each server knows the presence of its locally connected users and shares deltas with peers. Eventual consistency with a bounded staleness SLO of 5-10 seconds works here because presence is a best-effort signal -- users tolerate "online" showing for a few seconds after someone leaves, and the alternative (strong consistency across all chat servers) would require consensus per heartbeat, which is prohibitively expensive at scale.
 
 3. **Presence coalescing.** Batch presence updates within a 30-second window. If a user rapidly toggles between online/offline (flaky connection), coalesce into a single update. Only emit a "went offline" event after 60 seconds of no heartbeat (debounce).
 
@@ -4514,7 +4523,7 @@ Design a social feed that aggregates posts from followed users, ranked and deliv
 
 - **Latency**: Feed loads in <500ms
 - **Availability**: 99.99% uptime
-- **Eventual consistency**: Feed can be slightly stale (seconds, not minutes)
+- **Eventual consistency with explicit staleness SLO**: "seconds" is not a specification. Define: P50 replication lag < 2s, P99 < 10s. Monitor replication lag with dashboards and alerts when staleness exceeds SLO. Critical UX constraint: a user who posts and does not see their own post has a terrible experience. Use read-your-writes consistency for the author (read from leader or sticky session), eventual consistency for other viewers
 - **Scale**: 500M DAU, average user follows 500 people, 2B feed reads/day
 - **Freshness**: New posts appear within 10 seconds for most users
 
@@ -4693,8 +4702,10 @@ When a user with 10M followers posts, fan-out on write creates 10M Redis writes 
 | Creator quality | Historical engagement rate of the poster | Medium |
 | Negative signals | P(hide), P(report), P(unfollow after seeing) | High (negative) |
 
-**Simple scoring formula:** `score = engagement_prediction * time_decay * relationship_weight`
+**Illustrative scoring formula:** `score = engagement_prediction * time_decay * relationship_weight`
 where `time_decay = e^(-0.1 * age_hours)` and `relationship_weight = log(1 + interaction_count)`.
+
+> **Warning:** This formula is a toy illustration. In production, feed ranking is a full ML systems problem: feature engineering pipeline, model training infrastructure (offline batch + online fine-tuning), online/offline scoring trade-offs (pre-compute top-1000 candidates, then re-rank top-50 in real time), A/B testing with statistical rigor (not just click-through rate -- measure long-term retention), feedback loop management (popularity bias, filter bubbles), and rank poisoning prevention. Presenting a simple formula without acknowledging this complexity signals shallow understanding. L5+ candidates sketch the two-stage retrieval/ranking architecture and mention the ML infrastructure required to train and serve the model.
 
 **Chronological vs ranked trade-off:** Chronological is transparent and easy to debug but optimizes for recency, not relevance. Ranked feeds increase engagement 5-15% but create filter bubbles and require ML infrastructure. Most production systems offer a toggle (Twitter's "For You" vs "Following").
 
@@ -5145,7 +5156,7 @@ The URL Frontier is the heart of the crawler — it determines what to crawl nex
 - Before adding a discovered URL to the frontier, check: "Have I seen this URL before?"
 - Bloom filter: probabilistic set membership test with ~1% false positive rate
 - 10B URLs x 10 bits per element = ~12 GB — fits comfortably in memory
-- False positive = skip a URL we haven't seen (acceptable: we miss one page)
+- False positive = skip a URL we have not seen. At 1% FPR across 10B URLs, that is ~100M pages skipped. For a general-purpose crawler this is a deliberate trade-off: 12GB of memory vs. a distributed hash set requiring coordination. State the FPR and its impact explicitly -- the interviewer wants to see that you quantified the cost
 - False negative = impossible (Bloom filters never have false negatives)
 - URL normalization first: lowercase host, remove trailing slash, sort query params, strip tracking params (`utm_*`, `fbclid`)
 
@@ -5567,7 +5578,7 @@ If a node's clock jumps backward (NTP correction), the generator could produce I
 The 10-bit machine ID can be split as 5 bits datacenter (32 DCs) + 5 bits machine (32 per DC). This means:
 - No cross-datacenter coordination ever needed
 - Each DC independently generates non-colliding IDs
-- IDs from different DCs may interleave in time order (acceptable since cross-DC clock sync is ~10-50ms)
+- IDs from different DCs may interleave in time order. Cross-DC NTP sync is typically 10-50ms, so IDs generated within that window have no guaranteed ordering across DCs. State this trade-off: if your use case requires strict global ordering (e.g., financial transactions), Snowflake is the wrong choice -- use a centralized sequencer or Spanner TrueTime
 
 **Library vs. service deployment**: Prefer embedding as a library (no network call per ID). Deploy as a service only if language heterogeneity requires it (e.g., one Go service generating IDs for Python/Java callers via gRPC).
 
@@ -5590,7 +5601,7 @@ The 10-bit machine ID can be split as 5 bits datacenter (32 DCs) + 5 bits machin
 - Mentions machine ID allocation strategies
 
 **Red flags:**
-- Says "just use UUID" without discussing size or sortability
+- Says "use UUID" without discussing the 128-bit size penalty, lack of sortability, or index fragmentation trade-offs
 - Cannot explain the bit layout or calculate capacity
 - Does not mention clock synchronization as a concern
 - No capacity math (how many IDs per second?)
@@ -5616,7 +5627,7 @@ Design a system that suggests the top 5-10 search completions as a user types, r
 - **Availability**: 99.99% -- no autocomplete = degraded search UX
 - **Scale**: 10B search queries/day, 5B unique search terms
 - **Freshness**: Trending topics surface within 5-15 minutes
-- **Consistency**: Eventual is fine (stale suggestions are acceptable for seconds)
+- **Consistency**: Eventual consistency with P99 staleness < 30s. Stale autocomplete suggestions degrade relevance but do not cause correctness failures -- a user seeing yesterday's trending topic for a few seconds is a minor UX imperfection, not a broken feature. The trade-off: strong consistency would require cross-region coordination per keystroke, adding 50-100ms latency that directly violates the <100ms requirement
 
 ### Back-of-Envelope Estimation
 - 10B queries/day, avg 5 chars typed = 50B autocomplete requests/day
@@ -7031,9 +7042,17 @@ Body:
   "model_preference": "auto" | "gpt-4" | "claude-3",
   "max_tokens": 1024,
   "stream": true,
-  "fallback_enabled": true,
+  "fallback_enabled": true,   // Default: ON. See note below.
   "cache_policy": "semantic" | "exact" | "none"
 }
+
+NOTE on fallback_enabled: Fallback chains are non-negotiable in multi-provider LLM
+systems. Provider outages are common -- even 99.5% SLA means ~4 hours/year downtime.
+Default: fallback enabled. Explicit opt-out only for latency-critical paths where the
+fallback model's quality degradation is unacceptable and the caller prefers an error
+to a lower-quality response. In your design, make this default-on with opt-out, not
+opt-in. Presenting fallback as optional signals that you have not operated a
+multi-provider system in production.
 
 Response (streaming):
   data: {"id": "req_abc", "delta": "Hello", "model": "claude-3-opus", "cached": false}

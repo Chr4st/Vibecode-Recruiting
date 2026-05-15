@@ -51,7 +51,7 @@ Can you solve two-sum? Do you understand how a hash map works? Can you implement
 **Game 2: The Meta-Game (HOW you deploy it)**
 Can you communicate your approach before coding? Do you verify your own solution? Do you handle hints gracefully? Do you discuss trade-offs without being asked? Can you recover when you're stuck? This is the game that separates offers from rejections among candidates with identical technical ability.
 
-Here is the uncomfortable truth: **Game 2 matters more than most candidates realize.**
+Here is the uncomfortable truth: **Game 2 matters more than 90% of candidates realize, and it is the primary reason technically strong candidates get rejected.**
 
 Consider this data from a mid-size tech company's hiring retrospective (anonymized, 2024):
 
@@ -201,7 +201,7 @@ Less than 2 weeks
 
 # Chapter 2: How Scoring Actually Works
 
-Understanding how you are evaluated changes how you prepare. Most candidates operate on a vague mental model: "solve the problem, get the job." The actual scoring system is far more nuanced, and knowing its mechanics gives you a concrete target to aim at.
+Understanding how you are evaluated changes how you prepare. 85-90% of candidates operate on a vague mental model: "solve the problem, get the job." The actual scoring system is far more nuanced, and knowing its mechanics gives you a concrete target to aim at — and reveals why so many technically capable candidates fail.
 
 ## 2.1 The Universal 1-4 Rubric
 
@@ -211,7 +211,7 @@ Nearly every major tech company uses some variation of a 1-4 scoring rubric per 
 |-------|-------|----------------|-------------------|
 | 1 | Strong No Hire | Any single 1 = almost certain rejection | Could not solve the problem. Poor communication. Gave up or went silent. Fundamental gaps in knowledge. |
 | 2 | Lean No Hire | Majority 2s = rejection | Solved with heavy hints. Messy, unstructured code. Missed obvious edge cases. Weak communication. |
-| 3 | Lean Hire | All 3s = borderline (company-dependent) | Solved correctly. Decent communication. Some prompting needed. Reasonable code quality. |
+| 3 | Lean Hire | All 3s = borderline (frequently rejected at Google/Meta) | Solved correctly. Decent communication. Some prompting needed. Reasonable code quality. |
 | 4 | Strong Hire | Any 4 = strong positive signal | Solved optimally. Excellent communication. Proactive testing. Trade-offs discussed. Clean code. |
 
 **The critical insight:** The jump from 2 to 3 is about correctness. The jump from 3 to 4 is about everything else. Most of this guide teaches you how to make that second jump.
@@ -422,14 +422,14 @@ Decision
 ```
 
 **Google HC mechanics:**
-- Composite score threshold: approximately 3.5+ across all rounds
+- Composite score threshold: approximately 3.5+ across all rounds — but 3.5 merely enters the hiring committee lottery. At Google, only 10-15% of onsite candidates receive offers. A 3.5 with a mix of 2s and 4s is weaker than straight 3s because it signals inconsistency (HC flags this explicitly).
 - A single "Strong No Hire" (1) from any interviewer almost always results in rejection, regardless of other scores
 - HC members focus on: consistency of signal (all 3s is better than mix of 2s and 4s), red flags in feedback, growth trajectory for more junior candidates
 - Borderline cases: HC may request one additional interview rather than making a decision on insufficient signal
 - Timeline: 1-3 weeks after on-site, sometimes longer during busy seasons
 - HC composition rotates — you cannot predict who will read your packet
 
-**What this means for you:** At Google, every round matters equally. You cannot "bomb one and ace the rest." The HC sees all feedback and weights it holistically. Your goal is consistent 3+ across every round, with at least one 4 to provide strong positive signal.
+**What this means for you:** At Google, every round matters equally. You cannot "bomb one and ace the rest." The HC sees all feedback and weights it holistically. **You should aim for all 4s and prepare as if a single 3 could kill your candidacy.** The difference between "solid performer" and "hire" at Google is narrower than you think.
 
 ### Meta: The Hiring Manager Model
 
@@ -489,13 +489,14 @@ Collaborative Decision
 ```
 
 **Amazon mechanics:**
-- Bar Raiser veto rate is approximately 10% — they rarely use it, but the threat ensures calibration
-- Leadership Principles are weighted as heavily as technical ability — you can be technically strong and still fail on LP alignment
+- Bar Raiser veto rate is approximately 10% — they exercise it regularly on borderline candidates, and you will not know which interviewer is the Bar Raiser until the debrief
+- Leadership Principles are the **primary** hiring filter, not a supplement to technical ability. LP behavioral assessment carries 40-50% weight — the highest behavioral weight of any FAANG company. A technically perfect candidate with weak LP stories gets rejected.
+- The Bar Raiser has formal veto power and exercises it regularly. This is not theoretical — it kills candidacies.
 - Debrief is collaborative: interviewers can change their scores based on discussion
-- Decisions are typically faster than Google or Meta (same day or within 48 hours)
+- Decisions are faster than Google or Meta (same day or within 48 hours)
 - Each interviewer "owns" 1-2 Leadership Principles and evaluates you specifically against those
 
-**What this means for you:** At Amazon, you are playing two games simultaneously — technical and behavioral/LP. Identify which LP each interviewer is evaluating (they often tell you) and tailor your behavioral answers accordingly. The Bar Raiser round is typically the hardest technical round — do not underestimate it.
+**What this means for you:** At Amazon, you are playing two games simultaneously — technical and behavioral/LP. The behavioral game is the harder one. Prepare 2-3 detailed STAR stories per LP for the 6 critical LPs (Customer Obsession, Ownership, Bias for Action, Deliver Results, Dive Deep, Earn Trust). Generic stories that could apply to any LP will fail — interviewers are trained to drill past vague answers. Identify which LP each interviewer is evaluating (they often tell you) and tailor your behavioral answers accordingly. The Bar Raiser round is the hardest round — do not underestimate it.
 
 ### Aggregation Comparison Table
 
@@ -525,11 +526,11 @@ A Google HC meeting for a single candidate lasts approximately 15-30 minutes. He
 - **Growth trajectory:** For L3/L4 candidates, HC gives more weight to problem-solving approach and learning ability. For L5+, they expect polished execution.
 - **Code quality signal:** HC members often read code samples themselves. Production-quality code with good naming and structure creates positive signal independent of interviewer commentary.
 
-**Common HC outcomes:**
-- "All strong positive" — straightforward hire, quick discussion
-- "One weak round, rest strong" — discussion focuses on whether the weak round was a fluke or a pattern
-- "Mixed signals" — longest discussions, often results in additional interview request
-- "Any Strong No Hire" — almost always reject, discussion focuses on confirming the signal was legitimate
+**Common HC outcomes (in order of frequency):**
+- "Mixed signals" — the most common outcome. Longest discussions, frequently results in rejection or additional interview request. This is where 60-70% of candidates land.
+- "One weak round, rest strong" — discussion focuses on whether the weak round was a fluke or a pattern. Even one weak round can sink you if it signals a fundamental gap.
+- "Any Strong No Hire" — almost always rejected. Discussion focuses on confirming the signal was legitimate, but the outcome is rarely in doubt.
+- "All strong positive" — rare. Quick hire decision. This happens for fewer than 15% of onsite candidates.
 
 ### Meta: Debrief Dynamics
 
@@ -1218,7 +1219,7 @@ If the interviewer says "what about [alternative]?" — you just avoided a costl
 
 ## 3.6 The Last 3 Minutes (Scripted)
 
-The last 3 minutes are your closing argument. Most candidates let them fizzle out. A strong finish leaves a lasting impression — and the interviewer writes their feedback immediately after, so the ending is freshest in memory.
+The last 3 minutes are your closing argument. Over 80% of candidates let them fizzle out. A strong finish leaves a lasting impression — and the interviewer writes their feedback immediately after, so the ending is freshest in memory.
 
 ### Scenario A: You Are Not Done
 
@@ -1680,7 +1681,7 @@ Most on-sites include a lunch break (30-60 min), often with an engineer (this IS
 
 ### Afternoon Strategy
 
-Rounds 4-6 are where most candidates lose points — not because the problems are harder, but because their energy is lower.
+Rounds 4-6 are where the majority of candidates — even strong ones — lose points. Not because the problems are harder, but because their energy is lower and interviewers in later rounds are less forgiving of sloppy communication.
 
 **Countermeasures:**
 - Snack between afternoon rounds (protein bar, nuts — not sugar)
@@ -1976,7 +1977,7 @@ Google calibrates interview difficulty to target level:
 **Down-leveling:** Google will down-level rather than reject if HC believes you
 are strong but not at the target level. This is not a consolation prize — L3
 offers at Google are excellent. Accept the down-level if you believe in the
-company; internal promotion to L4 typically takes 18-24 months.
+company; internal promotion to L4 takes 18-36 months with high variance. Many engineers take 3+ years, especially in the current market where promotion velocity has slowed across the industry. The 18-month timeline is best-case at a high-growth company, not typical. Do not accept a down-level assuming you will promote quickly — plan for the 36-month timeline and be pleasantly surprised if it happens faster.
 
 ### Host Matching
 
@@ -2049,7 +2050,7 @@ the tightest time constraint of any major company. The implication is clear:
 - **Code must compile** — Meta interviewers run your code. Syntax errors and
   off-by-one bugs are caught and count against you
 - **Partial solutions are heavily penalized** — Completing 1.5 out of 2 problems
-  is typically a "Lean No Hire"
+  is a "Lean No Hire" in practice, and two Lean No Hires kills your candidacy
 
 **The math:** If you cannot consistently solve LeetCode mediums in under 20
 minutes, you are not ready for Meta's coding rounds. This is the single most
@@ -2727,6 +2728,8 @@ The numbers tell the story:
 | Weak referral (name drop) | 10-20% | 3-7 days |
 | Strong referral (advocate) | 30-50% | 1-3 days |
 
+**Reality check on referral math:** These are screen-to-interview conversion rates, not offer rates. With 10-15% onsite-to-offer conversion, the chain math is brutal: strong referral (50% to interview) x 15% onsite-to-offer = **7.5% actual offer probability**. Even the best referral only bypasses the resume screen, not the bar. A weak referral with a 15% interview rate yields ~2.25% offer probability — barely better than a cold application that gets an interview. Referrals are necessary but not sufficient. Do not treat a referral as a golden ticket.
+
 A "strong referral" means the referrer actively advocates: "I have worked with
 this person and I recommend them." A "weak referral" means: "I know this
 person exists and they asked me to refer them."
@@ -3208,7 +3211,7 @@ this position?"
 
 **Data point:** Candidates who defer salary discussion until after receiving
 an offer negotiate 10-20% higher compensation on average (Glassdoor 2024
-salary survey).
+salary survey). **Caveat: this applies only to candidates with competing offers.** In the 2025-2026 market, most new grads and many mid-level candidates have 0-1 offers. With a single offer and no competing leverage, your negotiation power is near zero. Companies know this. The 10-20% uplift assumes you have a credible alternative — without one, expect 0-5% movement at best. Do not plan your financial future around negotiation gains you may not have the leverage to extract.
 
 ### Law 2: The First Offer Is Never the Best Offer
 
@@ -3260,7 +3263,7 @@ many components, and some are easier to negotiate than others:
 |-----------|--------------|-------|
 | Base salary | Medium | Bands are defined but the position within the band is flexible |
 | RSU/Equity | High | This is where the most money is available |
-| Sign-on bonus | Very High | Often not in the initial offer; easy to add |
+| Sign-on bonus | Very High (with leverage) | Often not in the initial offer; easier to add than base salary increases — but only if you have competing offers or a strong counteroffer |
 | Start date | Very High | Almost always flexible |
 | Level/Title | Medium-High | Very high leverage if successful |
 | PTO | Low-Medium | Some companies flex, especially startups |
@@ -3982,6 +3985,8 @@ TARGET      | 4-6    | Primary goals              | Week 2-4
 SAFETY      | 2-3    | Fallback offers            | Week 1-3
 ```
 
+**Reality check on this framework:** It assumes you can generate 2-3 fallback offers. With 10-15% onsite-to-offer conversion, most candidates get 0-1 offers total. The "SAFETY tier" is aspirational for strong candidates, not a baseline assumption. Plan for the scenario where you have exactly one offer — or zero. If your pipeline has fewer than 15-20 active applications across all tiers, you do not have a pipeline; you have a hope. Scale the SAFETY tier to 5-8 companies minimum.
+
 **Warm-up companies** are places you would accept but are not your first
 choice. They serve two purposes: interview practice with real stakes, and
 generating competing offers for negotiation.
@@ -4067,10 +4072,7 @@ but is still in early stages.
 >
 > Thanks for any flexibility you can provide.
 
-**What happens next:** 70-80% of the time, Company A will accelerate. They
-may skip a phone screen, compress the loop into fewer days, or expedite the
-hiring committee review. If they cannot accelerate, they will usually tell
-you honestly, and you can decide whether to ask Company B for an extension.
+**What happens next:** In a strong market, 70-80% of companies will accelerate. In the 2025-2026 market, expect closer to 50-60% — companies with fewer open headcount have less urgency to compete. They may skip a phone screen, compress the loop into fewer days, or expedite the hiring committee review. If they cannot accelerate, they will tell you, and you can decide whether to ask Company B for an extension. Do not assume acceleration is guaranteed.
 
 ### Script: Asking for an Offer Extension
 
@@ -4093,9 +4095,7 @@ a week than have you accept and then renege.
 An "exploding offer" is one with an artificially short deadline — often 48
 hours or less. Here is the reality:
 
-**Most exploding offers are not truly exploding.** They are pressure tactics.
-In my experience, fewer than 10% of companies actually rescind an offer when
-the candidate asks for more time. The exceptions tend to be:
+**Most exploding offers are not truly exploding — but the risk is higher than it used to be.** They are often pressure tactics, and historically fewer than 10% of companies rescinded when candidates asked for more time. However, in the 2025-2026 market, rescission rates have increased as companies face headcount volatility. Do not assume you are safe. The exceptions used to be rare but are now more common:
 
 - Small startups with exactly one headcount slot
 - Government/defense contractors with strict bureaucratic timelines
@@ -5480,7 +5480,7 @@ The offer letter is not the finish line. The decisions you make between signing 
 
 ### 12.1 Team Selection
 
-At companies like Google and Meta, receiving an offer does not mean you have a team. You enter a "team matching" process where you speak with hiring managers from teams with open headcount. This is your last chance to choose wisely — and most candidates squander it by being too eager to finalize.
+At companies like Google and Meta, receiving an offer does not mean you have a team. You enter a "team matching" process where you speak with hiring managers from teams with open headcount. This is your last chance to choose wisely — and the majority of candidates squander it by being too eager to finalize, accepting the first team that shows interest rather than optimizing for growth and impact.
 
 #### 15 Questions to Ask the Hiring Manager
 
@@ -5938,7 +5938,7 @@ Give this rubric to your mock partner before you start. It ensures structured, a
 | Time management | | Finished the problem? Paced well? Knew when to move on? |
 | Collaboration | | Responded well to hints? Incorporated feedback? Pleasant to work with? |
 
-A score of 3 means "meets the bar." Aim for consistent 4s across all dimensions before interviewing at your target companies.
+A score of 3 means "enters HC discussion," not "gets an offer." HC rejects 85-90% of onsite candidates at Google and Meta. A 3 is borderline — you need **consistent 4s (Strong Hire) across all rounds** to have a realistic shot. A single 2 anywhere is usually fatal. The gap between 3 and 4 is where most candidacies die. Aim for consistent 4s across all dimensions before interviewing at your target companies — and understand that even 4s do not guarantee an offer.
 
 ---
 
@@ -5993,9 +5993,9 @@ More practice is not always better practice. Understanding the curve of diminish
 You are ready when:
 
 - You consistently solve medium-difficulty problems in under 25 minutes
-- Your mock evaluation scores average 3.5+ across all dimensions
+- Your mock evaluation scores average 3.5+ across all dimensions (remember: 3.5 is the floor for HC consideration, not for confidence. Aim for consistent 4s in mocks before targeting top companies.)
 - You are no longer discovering new failure modes (just polishing existing skills)
-- You have completed at least 5 full-format mocks (not just "solving problems")
+- You have completed at least 10 full-format mocks (not just "solving problems" — 5 is not enough to calibrate reliably)
 - You can explain your approach and trade-offs clearly while coding
 
 Do not wait until you feel "ready." You will never feel fully ready. Start with your safety-tier companies (ones you would accept but are not your top choice) to get real interview reps before interviewing at your dream company.
@@ -6112,11 +6112,11 @@ The 2026 hiring market is materially different from the 2021 peak. Understanding
 - Junior and entry-level roles are down 60% (hit hardest by both AI displacement and reduced headcount)
 - AI/ML-specific roles are up 300% (but competition is fierce)
 - Average time from first application to signed offer: 3-5 months (versus 1-2 months in 2021)
-- Offer rescission rates are up — do not stop interviewing until the background check clears
+- **WARNING: Offer rescission rates increased significantly in 2025-2026.** Do not stop interviewing until your background check clears AND you have a signed start date with a confirmed team. Companies including Google, Meta, and multiple well-funded startups have rescinded offers after headcount freezes, reorgs, and hiring pauses. Do not give notice at your current job until the new offer is irrevocable. An offer letter is not a contract — it is a statement of intent that can be withdrawn. Treat every unsigned, unstarted offer as provisional.
 
 #### Strategy Adjustments for a Down Market
 
-**Apply more broadly.** Your "safety tier" should be larger than in a hot market. Apply to 20-30 companies instead of 5-10. Include companies you would not have considered in 2021.
+**Apply more broadly — and do the math.** At 1-2% cold application conversion rate, 30 applications = 0.3-0.6 onsites. That is not enough. You need **100-200+ applications** combined with a strong referral pipeline to generate enough onsites for even a single offer. Direct L3 entry at FAANG is near-impossible without internship conversion, competitive programming background, or exceptional open source contributions. The 7% new grad hire rate (down from 31% in 2021) means the bar for entry-level is now what mid-level was in 2020. Include companies you would not have considered in 2021, and treat every application without a referral as a lottery ticket, not a plan.
 
 **Calibrate salary expectations.** Initial offers may be lower than 2021 peaks. Focus on getting the offer first, then negotiate hard. A bird in hand gives you leverage for the next negotiation.
 

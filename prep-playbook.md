@@ -61,10 +61,10 @@ These five activities deliver the most return per hour invested. If you're short
 | 1 | **Learn the 15 DSA patterns** (Ch 4-6) | 40-60 hours | Patterns let you solve novel problems by recognition, not invention |
 | 2 | **Practice explaining while coding** (Ch 3.6) | 10-15 hours | Communication is 30-40% of your score at most companies |
 | 3 | **Do mock interviews** (Ch 11) | 10-20 hours | Simulated pressure is the only way to prepare for real pressure |
-| 4 | **Prepare 5 behavioral stories** (Ch 8) | 5-8 hours | Reusable across every company; most candidates underprepare here |
+| 4 | **Prepare 12-16 behavioral stories** (Ch 8) | 10-20 hours | Reusable across every company; 5-8 stories is not enough for the current market |
 | 5 | **Target company research** (Ch 1, Ch 10) | 3-5 hours | Knowing the format eliminates surprises; referrals 5x your response rate |
 
-Total: 68-108 hours for a strong foundation. Most people need 8-12 weeks at 8-10 hours/week.
+Total: 68-108 hours for a strong foundation. **Realistic minimum: 3-6 months for FAANG-tier companies.** 8-12 weeks is only viable for experienced engineers (5+ YOE) who are refreshing, not building from scratch. New grads and career switchers need 4-6 months minimum at 15-25 hours/week.
 
 ### Companion Guide Map
 
@@ -76,7 +76,7 @@ Total: 68-108 hours for a strong foundation. Most people need 8-12 weeks at 8-10
 
 ### A Note on Practice Volume
 
-Solving 500 LeetCode problems is not a strategy. Solving 150 problems across all 15 patterns, with full understanding of why each solution works, is. Quality over quantity. If you can't explain your solution to a non-technical friend in 60 seconds, you don't understand it well enough.
+Solving 500 LeetCode problems without understanding is not a strategy. Solving 250-300 problems across all 15 patterns, with full understanding of why each solution works, is the realistic target for FAANG-tier offers. Quality matters, but volume also matters -- you need both. If you can't explain your solution to a non-technical friend in 60 seconds, you don't understand it well enough.
 
 ---
 
@@ -148,12 +148,12 @@ Understanding what level of problem-solving maps to what job level prevents both
 
 | Level | Title (typical) | DSA Expectation | System Design | Behavioral |
 |-------|----------------|----------------|--------------|-----------|
-| **L3 / E3 / SDE I** | Junior / New Grad | Solve 2 easy or 1 easy + 1 medium in 45 min | None or very basic | Basic teamwork stories |
+| **L3 / E3 / SDE I** | Junior / New Grad | Solve 2 mediums or 1 medium-hard in 45 min | None or very basic | Basic teamwork stories |
 | **L4 / E4 / SDE II** | Mid-level | Solve 1-2 mediums in 45 min, discuss optimization | High-level design of 1 system | Conflict resolution, project ownership |
 | **L5 / E5 / Senior** | Senior | Solve 1 medium-hard in 45 min with optimal solution | Full system design with scaling, trade-offs | Leadership without authority, mentoring |
 | **L6 / E6 / Staff** | Staff | Solve 1 hard or discuss complex trade-offs | Deep system design with cross-system concerns | Organizational impact, technical vision |
 
-**Calibration check:** If you can reliably solve LC mediums in 25-30 minutes with clean code and clear communication, you are calibrated for L4-L5 at most companies. If mediums take you 40+ minutes, focus on pattern recognition (Chapters 4-6) before scheduling interviews.
+**Calibration check:** Solving LC mediums in 25 minutes is the **floor**, not the ceiling. L4-L5 at top companies requires solving hards consistently in 35-45 minutes with optimal time/space complexity. Mediums alone = borderline at best, rejection at most top companies. The bar rose ~12% in 2024-2025. If mediums take you 30+ minutes, focus on pattern recognition (Chapters 4-6) before scheduling interviews -- you are further behind than you think.
 
 ### 1.4 Pass Rates by Round Type
 
@@ -172,7 +172,7 @@ The overall 20-30% onsite-to-offer rate means that even well-prepared candidates
 
 ### 1.5 2025-2026 Trends to Know
 
-**AI fluency is now expected.** Several companies (Google, Meta, Anthropic, OpenAI) have added questions about AI/ML systems or ask how you'd integrate LLMs into a design. You don't need to be an ML engineer, but you should understand RAG, embeddings, prompt engineering, and when to use fine-tuning vs. in-context learning at a conceptual level.
+**AI fluency is now expected.** Several companies (Google, Meta, Anthropic, OpenAI) have added questions about AI/ML systems or ask how you'd integrate LLMs into a design. You must understand RAG, embeddings, prompt engineering, and when to use fine-tuning vs. in-context learning at a conceptual level. Candidates who cannot discuss these topics are at a measurable disadvantage.
 
 **Take-home projects are declining** at large companies but holding steady at startups. When they do appear, they typically have a 2-4 hour time limit and are followed by a code review discussion round.
 
@@ -247,25 +247,25 @@ Organize your target companies into tiers. This isn't about prestige -- it's abo
 
 Choose your timeline based on your current level (from the Skills Audit) and your target:
 
-**4-Week Sprint** -- For experienced engineers with strong fundamentals who are rusty on interview format.
+**4-Week Sprint** -- For experienced engineers (5+ YOE) with strong fundamentals who are rusty on interview format.
 - Prerequisite: Most DSA patterns rated 3+, previous interview experience.
-- Schedule: 2-3 hours/day. Focus on pattern review (Ch 4-6), mock interviews (Ch 11), and behavioral prep (Ch 8).
-- Risk: Not enough time to fill fundamental gaps. If your audit shows multiple 1-2 ratings, choose a longer timeline.
+- Schedule: 4-6 hours/day. Focus on pattern review (Ch 4-6), mock interviews (Ch 11), and behavioral prep (Ch 8). 2-3 hours/day is insufficient for this timeline.
+- Risk: Not enough time to fill fundamental gaps. If your audit shows multiple 1-2 ratings, choose a longer timeline. Most people who think they qualify for the sprint plan do not.
 
-**8-Week Standard** -- The recommended path for most candidates.
+**8-Week Accelerated** -- Only viable for candidates with solid CS fundamentals refreshing for interviews.
 - Prerequisite: CS fundamentals (data structures, basic algorithms). Some patterns may be at 1-2.
-- Schedule: 1.5-2 hours/day. Weeks 1-2: foundations and methodology. Weeks 3-6: pattern deep dives. Weeks 7-8: mock interviews and company-specific prep.
-- Sweet spot for balancing thoroughness with momentum.
+- Schedule: 4-5 hours/day. Weeks 1-2: foundations and methodology. Weeks 3-6: pattern deep dives. Weeks 7-8: mock interviews and company-specific prep. At 1.5-2 hours/day this plan stretches to 16+ weeks in practice.
+- This timeline is tight. Do not underestimate the daily commitment required.
 
-**12-Week Thorough** -- For candidates targeting L5+ or switching into a more competitive tier.
+**12-Week Thorough** -- The realistic minimum for most candidates targeting FAANG-tier companies.
 - Prerequisite: Any starting level. Allows time to build from scratch on weak areas.
-- Schedule: 1-2 hours/day. Adds system design depth (weeks 7-9), advanced patterns (week 10), and extended mock interview practice.
-- Best for candidates who want to minimize variance in outcomes.
+- Schedule: 4-6 hours/day. Adds system design depth (weeks 7-9), advanced patterns (week 10), and extended mock interview practice. At 1-2 hours/day, this plan takes 6+ months.
+- This is where most successful candidates land. Do not try to compress it.
 
 **6-Month Career Switch** -- For candidates coming from non-CS backgrounds or returning after a long break.
 - Prerequisite: Basic programming ability. May need to learn data structures from scratch.
-- Schedule: 1-2 hours/day with structured curriculum. Months 1-2: data structures and language fluency. Months 3-4: patterns and problem solving. Months 5-6: mock interviews, behavioral, and applications.
-- Consider a structured course (see Chapter 15) alongside this playbook.
+- Schedule: 4-6 hours/day with structured curriculum. Months 1-2: data structures and language fluency. Months 3-4: patterns and problem solving. Months 5-6: mock interviews, behavioral, and applications. Part-time prep (2-3 hours/day) extends this to 9-12 months.
+- A structured course (see Chapter 15) alongside this playbook is strongly recommended, not optional.
 
 ### 2.4 "Ready" Benchmarks
 
@@ -278,11 +278,11 @@ Use these benchmarks to assess whether you're prepared to start interviewing. Tr
 | **LC Medium time** (first correct submission) | >45 min | 30-45 min | 20-30 min | <20 min |
 | **LC Hard solve rate** | <10% | 10-25% | 25-40% | 40%+ |
 | **Mock interview score** (avg, 1-5 scale) | <2.5 | 2.5-3.5 | 3.5-4.5 | 4.5+ |
-| **Behavioral stories prepared** | 0-2 | 3-4 | 5-8 | 8+ |
+| **Behavioral stories prepared** | 0-4 | 5-8 | **12-16** | 16+ |
 | **System design ability** (for L5+ only) | Can't structure answer | Basic structure, misses depth | Full answer with trade-offs | Could teach it |
 | **Pattern coverage** (of 15 patterns) | <5 at level 3+ | 5-9 at level 3+ | 10-13 at level 3+ | 14-15 at level 4+ |
 
-**The "Ready" column is your target.** You do not need to be in "Over-prepared" to get offers. Over-preparation often indicates you're grinding LeetCode to avoid the discomfort of actually applying. If you're in the "Ready" column across most metrics, start scheduling interviews.
+**The "Ready" column is your minimum target.** 12-16 deeply practiced behavioral stories with variant versions for different company cultures is the bar. 5-8 stories will leave you scrambling when the interviewer asks a follow-up that does not map to your prepared set. Behavioral weight is now 20-30% at most companies. If you are in the "Ready" column across most metrics, start scheduling interviews -- but continue to improve while interviewing.
 
 ### 2.5 Setting Your Goal Statement
 
@@ -421,7 +421,7 @@ What type of problem is this?
 +-- Bit-level operations? ------------------------> BIT MANIPULATION
 ```
 
-**How to use this in an interview:** You don't need to recite the tree. After clarifying the problem, silently scan the top-level branches. "Is this an array problem? A graph problem? An optimization problem?" That narrows you to 2-3 candidate patterns. Then check the sub-branches. Within 30 seconds, you should have a hypothesis to test.
+**How to use this in an interview:** You will not recite the tree verbatim, but you must have internalized it. After clarifying the problem, silently scan the top-level branches. "Is this an array problem? A graph problem? An optimization problem?" That narrows you to 2-3 candidate patterns. Then check the sub-branches. Within 30 seconds, you should have a hypothesis to test.
 
 ### 3.3 Three Worked Examples
 
@@ -3230,7 +3230,7 @@ System design's share of the overall hiring signal has increased steadily as com
 
 **Why the increase:** Companies discovered that strong LC performers sometimes struggled to build real systems. System design tests architectural thinking, trade-off reasoning, and communication -- skills that predict on-the-job performance far better than solving DP puzzles under pressure.
 
-**The implication for you:** If you are targeting L4/E4 and above, system design is no longer optional. Even new grads at Google and Meta now face "lightweight" system design or product architecture rounds.
+**The implication for you:** If you are targeting L4/E4 and above, system design is mandatory and heavily weighted. Even new grads at Google and Meta now face "lightweight" system design or product architecture rounds. Skipping system design prep at any level is a disqualifying mistake.
 
 ### 7.2 System Design Interview Structure: The RESHADED Framework
 
@@ -3281,7 +3281,7 @@ What interviewers expect varies dramatically by seniority. Calibrate your depth 
 | **Scale** | "It would need a database" | "We'd shard by user_id" | "Here's the consistent hashing scheme" | "Here's why Dynamo-style is better than Paxos here" |
 | **Non-functional** | Mention availability | Discuss CAP implications | Design for specific SLAs (99.9%) | Design monitoring, alerting, gradual rollout |
 | **Communication** | Explain your diagram | Structured walkthrough | Lead the conversation | Adapt depth to interviewer signals |
-| **Expected prep** | 5-8 classic problems | 10-15 problems + building blocks | 15-20 problems + deep dives | Industry experience + paper reading |
+| **Expected prep** | **10-15 problems minimum** | **15-20 problems** + building blocks | **20-25 problems** + full RESHADED deep dives | Industry experience + paper reading + 25+ designs |
 
 **For new grads (L3/E3):** You will likely face a "Product Architecture" or "Lightweight System Design" round rather than a full SD round. The bar is lower: demonstrate that you can think beyond code and reason about components, data flow, and basic scaling. You are not expected to discuss consensus algorithms or design a globally distributed system.
 
@@ -3436,9 +3436,9 @@ Good: "If I did it again, I'd invest more upfront in the reconciliation tooling 
 
 **+Reflection:** The biggest lesson was that the simple, rule-based fix (synonyms) delivered nearly as much value as the ML model. I now always look for the "boring" solution first before reaching for ML. The synonym lookup table took 3 days to build; the LTR model took 6 weeks. If I had shipped the synonyms alone and measured, I might have saved the team significant effort -- or at least been able to make a data-driven case for whether the ML investment was worth the incremental lift.
 
-### 8.3 Story Banking -- The 12 Archetypes
+### 8.3 Story Banking -- The 12 Core Archetypes (Minimum)
 
-Every candidate should have 12 prepared stories -- enough to cover any behavioral question with a relevant, specific answer. Here are the 12 archetypes, each with a fill-in template for personalizing:
+Every candidate should have 12-16 deeply practiced stories with variant versions for different company cultures. The 12 archetypes below are your minimum foundation -- add 4+ additional stories that cover your unique strengths and company-specific values. Here are the 12 core archetypes, each with a fill-in template for personalizing:
 
 | # | Archetype | Template Prompt | Maps To |
 |---|-----------|----------------|---------|
@@ -4717,7 +4717,7 @@ Key cringes to look for:
 | 2-4 weeks | 2-3 mocks/week. At least 2 paid sessions for company-specific practice. |
 | Final week | 1-2 light mocks. Focus on behavioral and confidence. Don't cram new problems. |
 
-**Total recommended mocks before an important interview loop:** 8-12 coding mocks + 3-5 behavioral mocks. This is achievable in 4-6 weeks at 2-3 sessions per week.
+**Total recommended mocks before an important interview loop:** **15-25 coding mocks + 8-12 behavioral mocks + 8-10 system design mocks (L5+)**. This requires 8-12 weeks at 3-4 sessions/week. Stress inoculation requires volume; interview pressure is significantly higher than practice pressure. Do not compress this timeline.
 
 ### 11.7 Mock Interview Tracking
 
@@ -4749,7 +4749,7 @@ You are NOT ready if:
 - You still go silent for 60+ seconds during coding
 - You cannot analyze time complexity without guessing
 - Your behavioral answers regularly exceed 4 minutes
-- You have not done at least 5 mocks total
+- You have not done at least 15 mocks total (coding + behavioral combined)
 
 ### 11.8 The Week Before the Interview
 
@@ -5369,7 +5369,7 @@ for quick lookups and when you want a visual explanation.
 | Gemini | Generous free tier | $20/month (Advanced) | Best free option for casual use |
 
 If budget is tight, Claude or ChatGPT free tiers plus LeetCode free is enough. Premium
-tiers help but are not required.
+tiers provide a meaningful advantage in company-specific problem filtering and are strongly recommended for serious candidates.
 
 ---
 
@@ -5467,10 +5467,10 @@ target companies.
 
 | Situation | Plan | Daily Hours | Duration | Total Problems | Target |
 |-----------|------|------------|----------|---------------|--------|
-| Strong DS&A, interview in 4 weeks | Sprint | 2-3 | 4 weeks | 40-50 | Refresh and sharpen |
-| Solid fundamentals, 8 weeks | Accelerated | 2-4 | 8 weeks | 80-100 | Fill gaps, build speed |
-| Standard prep, 12 weeks | Thorough | 2-4 | 12 weeks | 120-150 | Comprehensive readiness |
-| Career switcher or rusty | Comprehensive | 3-5 | 24 weeks | 200+ | Build from ground up |
+| Strong DS&A, interview in 4 weeks | Sprint | 4-6 | 4 weeks | **80-100 minimum** | Refresh and sharpen (40 problems is a warmup, not prep) |
+| Solid fundamentals, 8 weeks | Accelerated | 4-6 | 8 weeks | **150-200** | Fill gaps, build speed |
+| Standard prep, 12 weeks | Thorough | 4-6 | 12 weeks | **250-300** | Comprehensive readiness |
+| Career switcher or rusty | Comprehensive | 4-6 | 24 weeks | **300-400+** | Build from ground up |
 
 **How to assess your starting point:**
 
@@ -5492,15 +5492,15 @@ Solve these 5 problems cold (no prep, timed 30 min each):
 
 ## 14.2 The 12-Week Plan — Detailed
 
-This is the most popular plan. Two tracks: 2hr/day (employed) and 4hr/day (full-time prep).
+This is the most popular plan. Two tracks: 4hr/day (employed, requires discipline) and 6hr/day (full-time prep). At 2hr/day, extend all timelines by 2x.
 
 **Phase 1: Foundations (Weeks 1-3)**
 
 | Week | DSA Focus | Problems/Day | Types | Behavioral | Networking |
 |------|-----------|-------------|-------|-----------|-----------|
-| 1 | Arrays, strings, hash maps | 2-3 easy | LeetCode Easy #1-15 | Draft 3 STAR stories | Update resume, LinkedIn |
-| 2 | Two pointers, sliding window | 2-3 easy/med | Pattern-focused | Draft 3 more stories | LinkedIn optimization |
-| 3 | Binary search, stacks, queues | 2-3 medium | Mixed | Refine all 6 stories | Start outreach (5/week) |
+| 1 | Arrays, strings, hash maps | 4-5 easy/med | LeetCode Easy #1-15 | Draft 4 STAR stories | Update resume, LinkedIn |
+| 2 | Two pointers, sliding window | 4-5 easy/med | Pattern-focused | Draft 4 more stories | LinkedIn optimization |
+| 3 | Binary search, stacks, queues | 4-5 medium | Mixed | Draft 4 more stories (12 total) | Start outreach (5/week) |
 
 Week 1 goals: Establish the habit. Solve rate does not matter yet. Build the daily routine.
 Week 2 goals: Start recognizing two core patterns. Time yourself on every problem.
@@ -5510,9 +5510,9 @@ Week 3 goals: Binary search should feel automatic. Stack problems should click.
 
 | Week | DSA Focus | Problems/Day | Types | Behavioral | Networking |
 |------|-----------|-------------|-------|-----------|-----------|
-| 4 | Trees (BFS, DFS), recursion | 2-3 medium | Tree traversal variations | Map stories to Amazon LPs | Continue outreach |
-| 5 | DP basics (1D) | 2 medium | Climbing stairs, house robber class | Practice STAR delivery aloud | Apply to safety companies |
-| 6 | DP advanced (2D, knapsack) | 2 medium | LCS, coin change class | Meta/Google behavioral frameworks | Apply to match companies |
+| 4 | Trees (BFS, DFS), recursion | 4-5 medium | Tree traversal variations | Map stories to Amazon LPs | Continue outreach |
+| 5 | DP basics (1D) | 3-4 medium | Climbing stairs, house robber class | Practice STAR delivery aloud | Apply to safety companies |
+| 6 | DP advanced (2D, knapsack) | 3-4 medium | LCS, coin change class | Meta/Google behavioral frameworks | Apply to match companies |
 
 Week 4 goals: Tree traversal (pre/in/post/level) should be mechanical. DFS vs BFS choice should be instant.
 Week 5 goals: Recognize the 4 core DP patterns. Solve 1D DP in under 25 minutes.
@@ -5522,9 +5522,9 @@ Week 6 goals: 2D DP table construction feels natural. First mock interview compl
 
 | Week | DSA Focus | Problems/Day | Types | Behavioral | Networking |
 |------|-----------|-------------|-------|-----------|-----------|
-| 7 | Graphs, topological sort, union-find | 2 medium | BFS/DFS on graphs, cycle detection | Prepare "difficult questions" answers | Apply to reach companies |
-| 8 | Heaps, tries, intervals | 2 med/hard | Priority queue patterns, merge intervals | Mock behavioral interview | Apply to dream companies |
-| 9 | Company-tagged problems | 3 medium | Focus on target company tags | Refine all stories based on mock feedback | Follow up on applications |
+| 7 | Graphs, topological sort, union-find | 3-4 medium | BFS/DFS on graphs, cycle detection | Prepare "difficult questions" answers | Apply to reach companies |
+| 8 | Heaps, tries, intervals | 3-4 med/hard | Priority queue patterns, merge intervals | Mock behavioral interview | Apply to dream companies |
+| 9 | Company-tagged problems | 4-5 medium | Focus on target company tags | Refine all 12+ stories based on mock feedback | Follow up on applications |
 
 Week 7 goals: Graph traversal is just tree traversal with a visited set. Topological sort template memorized.
 Week 8 goals: Know when to reach for a heap vs sorted structure. Trie implementation from memory.
@@ -5534,22 +5534,22 @@ Week 9 goals: Solving company-tagged problems at 60%+ rate within time limits.
 
 | Week | DSA Focus | Problems/Day | Types | Behavioral | Networking |
 |------|-----------|-------------|-------|-----------|-----------|
-| 10 | Company-tagged problems | 3 med/hard | Timed, simulated interview conditions | Full loop mock (behavioral + coding) | Phone screens happening |
-| 11 | Weak pattern review | 2-3 mixed | Focus on lowest-scoring patterns | Polish stories | On-sites happening |
-| 12 | Light review only | 1-2 easy/med | Confidence builders | Final rehearsal | Interview week |
+| 10 | Company-tagged problems | 4-5 med/hard | Timed, simulated interview conditions | Full loop mock (behavioral + coding) | Phone screens happening |
+| 11 | Weak pattern review | 3-4 mixed | Focus on lowest-scoring patterns | Polish stories | On-sites happening |
+| 12 | Light review + hard problems | 2-3 med/hard | Confidence builders at target difficulty | Final rehearsal | Interview week |
 
 Week 10 goals: Consistently solving mediums in 20-25 min, hards in 35-40 min.
 Week 11 goals: No pattern feels scary anymore. Weakest area is "okay" not "terrible."
 Week 12 goals: Light practice only. Rest more than you study. Peak for interviews.
 
-**4hr/day track adjustments:**
+**6hr/day track adjustments:**
 
-If you have 4 hours daily instead of 2, do not simply double the problems. Add:
-- 1 additional problem per day (quality over quantity)
-- 30 min system design study daily (starting week 4)
+If you have 6 hours daily instead of 4, add:
+- 2 additional problems per day (include at least 1 hard)
+- 45 min system design study daily (starting week 4)
 - 30 min behavioral practice daily (not just weekly)
 - 1 weekly contest (LeetCode weekly contest, Saturday or Sunday)
-- Additional mock interviews (2 per week instead of 1)
+- Additional mock interviews (3 per week instead of 2)
 
 ---
 
@@ -5572,24 +5572,24 @@ For engineers with solid fundamentals who need to sharpen, not learn from scratc
 
 | Week | Focus | Problems/Day |
 |------|-------|-------------|
-| 1 | Assessment + arrays/strings/hash maps + resume | 3 medium |
-| 2 | Two pointers, sliding window, binary search + system design starts | 3 medium |
-| 3 | Trees, graphs, BFS/DFS + company-tagged begins | 3 medium |
-| 4 | DP (1D and 2D combined) + full behavioral prep | 2-3 medium |
-| 5 | Heaps, tries, advanced patterns + mock interviews | 2-3 med/hard |
-| 6 | Company-tagged focus + system design mocks | 3 med/hard |
-| 7 | Weak areas + full loop mocks | 2-3 mixed |
-| 8 | Light review + interviews | 1-2 easy/med |
+| 1 | Assessment + arrays/strings/hash maps + resume | 4-5 medium |
+| 2 | Two pointers, sliding window, binary search + system design starts | 4-5 medium |
+| 3 | Trees, graphs, BFS/DFS + company-tagged begins | 4-5 medium |
+| 4 | DP (1D and 2D combined) + full behavioral prep | 3-4 med/hard |
+| 5 | Heaps, tries, advanced patterns + mock interviews | 3-4 med/hard |
+| 6 | Company-tagged focus + system design mocks | 4-5 med/hard |
+| 7 | Weak areas + full loop mocks | 3-4 mixed |
+| 8 | Light review + interviews | 2-3 med/hard |
 
 ---
 
 ## 14.4 The 4-Week Sprint Plan
 
-For experienced engineers who have interviewed recently or are refreshing after a short break.
+For experienced engineers (5+ YOE) who have interviewed within the last 12 months and are refreshing. If your last interview was more than a year ago, use the 8-week plan instead.
 
-**The 30-problem minimum viable set:**
+**The 80-problem minimum viable set:**
 
-If you can only solve 30 problems, solve these patterns (6 each):
+If you are truly sprinting, solve these patterns (13-14 each across 6 pattern groups, targeting med/hard):
 
 | Pattern | Must-Solve Problems | Why |
 |---------|-------------------|-----|
@@ -5672,12 +5672,12 @@ Best for: people who can only dedicate weekends, supplementing weekday sessions.
 
 Every Sunday, spend 20 minutes:
 
-- [ ] How many problems did I solve this week? (Target: 10-15)
+- [ ] How many problems did I solve this week? (Target: 20-25)
 - [ ] What patterns did I practice? (Should match plan)
 - [ ] What was my solve rate for new mediums? (Target: 60%+ without hints)
 - [ ] What was my average time for mediums? (Target: under 25 min)
 - [ ] Which patterns feel weakest? (Focus there next week)
-- [ ] Did I do behavioral practice? (At least 2 stories this week)
+- [ ] Did I do behavioral practice? (At least 4 stories rehearsed this week)
 - [ ] Did I do system design? (At least 1 session this week)
 - [ ] Am I on track with the plan? (If behind, adjust rather than cram)
 
@@ -5717,10 +5717,10 @@ Your prep allocation should shift dramatically based on experience level:
 
 | Level | Total Problems | Easy | Medium | Hard | Timeline |
 |-------|---------------|------|--------|------|----------|
-| New Grad | 150-200 | 40 | 100 | 30 | 12-16 weeks |
-| 1-3 YOE | 100-120 | 20 | 70 | 20 | 8-12 weeks |
-| 5+ YOE | 60-80 | 10 | 45 | 15 | 6-10 weeks |
-| 10+ YOE | 40-60 | 5 | 30 | 15 | 4-8 weeks |
+| New Grad | 250-350 | 50 | 150 | 60 | 16-24 weeks |
+| 1-3 YOE | 180-250 | 30 | 120 | 50 | 12-16 weeks |
+| 5+ YOE | 120-160 | 15 | 80 | 35 | 8-12 weeks |
+| 10+ YOE | 80-120 | 10 | 50 | 25 | 6-10 weeks |
 
 **What changes at each level:**
 
@@ -5826,7 +5826,7 @@ minimum.
 - Guide: NeetCode (which problems to solve and in what order)
 - Mock interviews: Pramp (free), Interviewing.io (paid, higher quality)
 - Assessment practice: HackerRank or CodeSignal (many companies use these)
-- Competitive programming: Codeforces (only if you enjoy it; not required)
+- Competitive programming: Codeforces (builds speed under pressure; recommended for anyone targeting L5+ or competing in tight candidate pools)
 
 **LeetCode Premium — is it worth it?**
 
@@ -5955,7 +5955,7 @@ anything.
 | 12: Mental Game | Rejection is normal, rest is productive, anxiety is manageable |
 | 13: AI Tools | AI accelerates learning but cannot replace practice; always attempt first |
 | 14: Study Plans | Pick a plan matching your timeline and stick to it; track progress weekly |
-| 15: Resources | Free resources are sufficient; paid resources save time; a study partner saves both |
+| 15: Resources | Free resources can work but paid resources provide a meaningful edge; a study partner saves time and improves accountability |
 
 ---
 
