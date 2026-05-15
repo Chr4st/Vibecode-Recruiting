@@ -133,7 +133,7 @@
 
 *Programming Languages:* Go · C++ · Java · PHP · Python · JavaScript · TypeScript · MATLAB
 
-*Infrastructure and Tools:* Docker · Git · GitHub Actions · Kubernetes · NGINX · Slurm · #LaTeX · Typst
+*Infrastructure and Tools:* Docker · Git · Kubernetes · NGINX · Slurm · #LaTeX · Typst
 
 *Web Frameworks:* Django · Flask · Next.js · React · Remix · React Native
 
