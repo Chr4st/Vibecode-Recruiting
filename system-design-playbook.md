@@ -2403,7 +2403,89 @@ when nodes are unevenly spaced on the ring.
 
 ---
 
-### 7.4 Consensus Algorithms
+### 7.4 Replication Strategies
+
+Replication keeps copies of data on multiple machines for fault tolerance, latency,
+and throughput. The fundamental abstraction is the **replicated state machine (RSM)**:
+if every replica starts in the same state and applies the same sequence of operations
+in the same order, all replicas will reach the same final state.
+
+The design challenge: **how do you ensure every replica sees the same sequence?**
+
+#### Primary/Backup Replication
+
+The simplest RSM scheme. One node is the **primary** (handles all writes); the others
+are **backups** (receive replicated state from the primary).
+
+```
+  Client
+    |
+    v
+  Primary ----replicates----> Backup A
+    |                          Backup B
+    |                          Backup C
+    v
+  Acknowledges client
+  (after N backups confirm)
+```
+
+**How it works:**
+1. Client sends all writes to the primary.
+2. Primary applies the write, then forwards the update to backups.
+3. **Synchronous:** Primary waits for all backups to acknowledge before responding to client. Strong consistency but higher latency.
+4. **Asynchronous:** Primary responds to client immediately, replicates in background. Lower latency but risk of data loss on primary failure.
+
+**Failure modes:**
+- **Backup failure:** Primary stops sending to failed backup. Promote a new backup or wait for recovery.
+- **Primary failure:** A backup must be promoted. But which one has the latest state?
+  - In async replication, some backups may be behind --- **data loss is possible**.
+  - **Split brain:** If the old primary recovers while a new primary is active, both accept writes. Fencing tokens or lease-based mechanisms prevent this.
+
+**Limitations that motivate consensus:**
+- Primary is a **single point of failure** for write availability.
+- **No automatic, safe failover** --- promoting a backup requires external coordination, and incorrect promotion causes split brain.
+- Cannot survive **network partitions** cleanly --- which side gets to be primary?
+
+> **What to say in the interview:**
+> "Primary/Backup is simple and works well for single-fault tolerance, but it
+> cannot safely perform automatic failover without an external coordinator.
+> That's exactly the problem consensus algorithms like Raft and Paxos solve ---
+> they let the replicas agree on a new leader without a single point of failure."
+
+---
+
+### 7.5 Consistency Models
+
+A **consistency model** is the contract between a distributed data store and its clients
+about what values reads can return. Stronger models are easier to reason about but
+more expensive to implement.
+
+| Model | Guarantee | Cost | Example Systems |
+|-------|-----------|------|-----------------|
+| **Linearizability** | Every operation appears to take effect at a single instant between its invocation and response. All clients see the same order. | Highest latency (coordination required) | Spanner, CockroachDB, ZooKeeper |
+| **Sequential consistency** | All clients see the same total order of operations, and each client's operations appear in program order. But the global order may not respect real-time. | High | Strict serializability (databases) |
+| **Causal consistency** | If operation A causally precedes B, all nodes see A before B. Concurrent operations may be seen in different orders by different nodes. | Moderate | COPS, MongoDB (causal sessions) |
+| **Eventual consistency** | If no new writes occur, all replicas will eventually converge to the same value. No ordering guarantees during convergence. | Lowest latency | Cassandra, DynamoDB (default), DNS |
+
+**Linearizability vs serializability** (commonly confused):
+- **Linearizability** is a single-object, real-time guarantee (each operation on one register appears atomic).
+- **Serializability** is a multi-object, transaction-level guarantee (transactions appear to execute in some serial order).
+- **Strict serializability** = both: transactions are serializable AND respect real-time order. This is what Spanner provides.
+
+> **What to say in the interview:**
+> "For this service I'd use linearizable reads and writes because the user expects
+> that once they see an update, they never see the old value again. That requires
+> consensus on every write, so I'd use Raft-based replication. If we can tolerate
+> reading slightly stale data, causal consistency is cheaper --- it only requires
+> tracking dependencies, not global agreement."
+
+---
+
+### 7.6 Consensus Algorithms
+
+The goal of a **consensus protocol** is to get a set of nodes to agree on a single value
+(or sequence of values) despite failures. This is the mechanism that implements
+replicated state machines without a single point of failure.
 
 #### Raft
 
@@ -2442,18 +2524,45 @@ Raft achieves consensus by electing a leader that manages log replication.
 
 - More general but significantly harder to understand and implement correctly.
 - Three roles: **Proposers** (propose values), **Acceptors** (vote), **Learners** (learn decided value).
-- Multi-Paxos optimizes for the common case (stable leader).
-- **Used in:** Google Spanner, Google Chubby, Apache Zookeeper (ZAB, a Paxos variant).
+- **Single-decree Paxos:** Agrees on one value. Two phases:
+  1. **Prepare:** Proposer sends `prepare(n)` with a proposal number `n`. Acceptors promise not to accept proposals with numbers less than `n`.
+  2. **Accept:** If a majority promises, proposer sends `accept(n, v)`. Acceptors accept if they haven't promised a higher number.
+- **Multi-Paxos:** Optimizes for repeated consensus (log replication). Elects a stable leader that skips the prepare phase for subsequent entries --- reduces latency from 2 round trips to 1.
+- **Used in:** Google Spanner, Google Chubby, Apache ZooKeeper (ZAB, a Paxos variant).
+
+#### The Progression: Primary/Backup → Paxos → Sharded Paxos
+
+This is the canonical way to explain replication in an interview:
+
+| Stage | Scheme | Fault Tolerance | Performance Bottleneck |
+|-------|--------|-----------------|----------------------|
+| 1 | Primary/Backup | Survives backup failures. Primary failure requires manual intervention or risks split brain. | Single primary handles all writes. |
+| 2 | Paxos/Raft | Survives any minority failure (f failures from 2f+1 nodes). Automatic leader election. No split brain. | Single leader handles all writes. Better availability than P/B. |
+| 3 | Sharded Paxos/Raft | Same per-shard fault tolerance. Divides keyspace across multiple independent Paxos/Raft groups. | Write throughput scales with number of shards. Each shard has its own leader. |
+
+```
+  Stage 3: Sharded Consensus
+
+  Shard 1 (keys A-M)          Shard 2 (keys N-Z)
+  +-------------------+       +-------------------+
+  | Leader  | F  | F  |       | Leader  | F  | F  |
+  | (Raft)  |    |    |       | (Raft)  |    |    |
+  +-------------------+       +-------------------+
+       Independent Raft groups --- each shard has its
+       own leader election, its own log, its own quorum.
+```
 
 > **What to say in the interview:**
-> "I would use Raft-based consensus (via etcd or CockroachDB) because it is
-> equivalent to Paxos in safety guarantees but much easier to reason about,
-> debug, and operate. Paxos is what Google uses internally but Raft has
-> become the industry standard for new systems."
+> "I would use Raft-based consensus (via etcd or CockroachDB) because it provides
+> the same safety guarantees as Paxos --- both require a majority quorum and
+> guarantee at most one leader per term --- but Raft is easier to reason about
+> and debug. If write throughput becomes a bottleneck, I would shard the keyspace
+> across multiple independent Raft groups, so each shard has its own leader and
+> write throughput scales linearly with shard count."
 
 ---
 
-### 7.5 Distributed Transactions
+### 7.7 Distributed Transactions
 
 #### Two-Phase Commit (2PC)
 
@@ -2522,7 +2631,7 @@ Raft achieves consensus by electing a leader that manages log replication.
 
 ---
 
-### 7.6 CQRS and Event Sourcing
+### 7.8 CQRS and Event Sourcing
 
 #### CQRS (Command Query Responsibility Segregation)
 
@@ -2569,7 +2678,46 @@ Raft achieves consensus by electing a leader that manages log replication.
 
 ---
 
-### 7.7 Idempotency
+### 7.9 RPC Semantics and Idempotency
+
+#### RPC Failure Modes
+
+A failed remote procedure call is ambiguous. The caller **cannot distinguish** between
+three fundamentally different failure scenarios:
+
+```
+  Scenario 1: Request lost          Scenario 2: Server crash         Scenario 3: Response lost
+  
+  Client --> X  Server               Client --> Server                Client --> Server
+          (never arrived)                         |                             |
+                                                  | processes request           | processes request
+                                                  X (crashes)                   | sends response
+                                                                                X --> Client
+                                                                                  (never arrived)
+  
+  Result: server never executed      Result: server may have         Result: server DID execute
+  the operation.                     partially executed.             the operation successfully.
+```
+
+The caller sees the same thing in all three cases: **a timeout with no response**.
+This ambiguity is fundamental to distributed systems and drives the need for
+explicit RPC semantics.
+
+#### RPC Delivery Guarantees
+
+| Semantic | Behavior | Implementation | Trade-off |
+|----------|----------|----------------|-----------|
+| **At-most-once** | Never retry. Accept that the call may not have executed. | No retry logic. | Simple but may lose operations. Acceptable for non-critical reads. |
+| **At-least-once** | Retry until acknowledged. The operation may execute multiple times. | Client retries with timeout. | Safe only if the operation is **idempotent** (e.g., `PUT`, `DELETE`). Unsafe for `transfer($100)`. |
+| **Exactly-once** | Each operation executes exactly once despite failures. | Requires idempotency keys + persistent dedup on the server. Expensive. | The gold standard for writes that must not duplicate (payments, orders). |
+
+> **What to say in the interview:**
+> "In a distributed system, the caller cannot distinguish between a lost request,
+> a crashed server, and a lost response --- all three look like a timeout. That's
+> why at-least-once delivery with idempotent operations is the standard approach:
+> the client retries safely because the server deduplicates using an idempotency key."
+
+#### Idempotency
 
 An operation is idempotent if performing it multiple times produces the same result
 as performing it once.
@@ -2615,7 +2763,7 @@ as performing it once.
 
 ---
 
-### 7.8 Resilience Patterns
+### 7.10 Resilience Patterns
 
 #### Circuit Breaker
 
@@ -2677,24 +2825,74 @@ as performing it once.
 
 ---
 
-### 7.9 Other Distributed Systems Concepts
+### 7.11 Reasoning About Time in Distributed Systems
+
+In a distributed system, there is **no shared global clock**. Each node has its own
+physical clock, and these clocks drift. You cannot rely on timestamps from different
+machines to determine the order of events. Instead, distributed systems use
+**logical clocks** to capture causality.
+
+#### The Happens-Before Relation
+
+Defined by Lamport (1978). Event `a` **happens before** event `b` (written `a → b`) if:
+
+1. `a` and `b` are on the same process and `a` occurs before `b` in program order.
+2. `a` is the sending of a message and `b` is the receipt of that same message.
+3. Transitivity: if `a → b` and `b → c`, then `a → c`.
+
+If neither `a → b` nor `b → a`, the events are **concurrent** (`a || b`). Concurrent
+events have no causal relationship --- they cannot have influenced each other.
+
+#### Lamport Clocks (Logical Clocks)
+
+Each node maintains a single integer counter `L`.
+
+1. **On local event:** `L = L + 1`.
+2. **On send:** Attach `L` to the message.
+3. **On receive message with timestamp `t`:** `L = max(L, t) + 1`.
+
+**Property:** If `a → b`, then `L(a) < L(b)`.
+**Limitation:** The converse is **not** true. `L(a) < L(b)` does NOT imply `a → b`.
+Lamport clocks cannot detect concurrency --- they only provide a partial ordering
+consistent with causality.
+
+```
+  Node A:  L=1 ----send(L=1)----->  Node B: L=0
+                                     receives: L = max(0,1)+1 = 2
+  Node A:  L=2 (local event)        Node B: L=3 (local event)
+  
+  L(A:1)=1 < L(B:receive)=2 ✓ (A's send happened before B's receive)
+  L(A:2)=2 < L(B:3)=3       but A:2 and B:3 are concurrent!
+```
 
 #### Vector Clocks
 
-- Each node maintains a vector of counters, one per node.
-- On local event: increment own counter.
-- On send: attach current vector.
-- On receive: merge vectors (element-wise max), then increment own counter.
-- **Purpose:** Detect causal ordering and concurrent writes.
-- **Used in:** DynamoDB (conflict detection), Riak.
+Vector clocks fix Lamport clocks' limitation by maintaining **one counter per node**,
+enabling detection of both causality and concurrency.
+
+Each node `i` maintains a vector `V` of size `N` (one entry per node).
+
+1. **On local event:** `V[i] = V[i] + 1`.
+2. **On send:** Attach full vector `V` to the message.
+3. **On receive message with vector `V'`:** For each `j`: `V[j] = max(V[j], V'[j])`, then `V[i] = V[i] + 1`.
+
+**Comparing vectors:**
+- `V(a) ≤ V(b)` (a happens before b): every element of `V(a)` ≤ corresponding element of `V(b)`.
+- `V(a) || V(b)` (concurrent): neither `V(a) ≤ V(b)` nor `V(b) ≤ V(a)`.
 
 ```
-  Node A: [A:1, B:0]  --> send to B
-  Node B: [A:1, B:1]  (merged + incremented)
+  Node A: [2, 0]  --> send to B
+  Node B: [2, 1]  (merged + incremented own)
+
+  Node A: [3, 0]  (local event, concurrent with B's [2,1])
   
-  If two vectors are incomparable (neither dominates),
-  the writes are concurrent --> conflict resolution needed.
+  Compare [3,0] vs [2,1]: A > B on first element, A < B on second.
+  Neither dominates --> concurrent writes --> conflict resolution needed.
 ```
+
+- **Used in:** DynamoDB (conflict detection), Riak.
+- **Trade-off:** Vector size grows with number of nodes. For large clusters, use
+  **dotted version vectors** or **interval tree clocks** to compress.
 
 #### CRDTs (Conflict-free Replicated Data Types)
 
